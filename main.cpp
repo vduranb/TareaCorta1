@@ -55,6 +55,8 @@ public:
     void cola();
     void InsertarFinalP(int v, int i);
     void MostrarN();
+    int BuscarDentro(string operandor);
+    int BuscarFuera(string operandor);
 
 };
 
@@ -137,6 +139,27 @@ void lista::MostrarN()
    cout << endl;
 }
 
+int lista::BuscarDentro(string operandor){   //Retorna la prioridad del operador dentro de la pila
+    pnodo aux = primero;
+    while(aux!=NULL){
+        if (operandor==aux->dato) {
+            int d =aux->dentro;
+            return d;
+        }aux=aux->siguiente;
+    }
+}
+
+int lista::BuscarFuera(string operandor){   //Retorna la prioridad del operador fuera de la pila  
+    pnodo aux = primero;
+    while(aux!=NULL){
+        if (operandor==aux->dato) {
+            int f =aux->fuera;
+            return f;
+        }aux=aux->siguiente;
+    }
+}
+
+
 
 
 int main()
@@ -152,7 +175,7 @@ int main()
     lista2.lectura(file2,2);
     lista3.lectura(file3,3);
     lista4.lectura(file4,4);
-    
+
 
     lista Prioridades;
     Prioridades.InsertarPrio("^",3,4);
@@ -162,6 +185,15 @@ int main()
     Prioridades.InsertarPrio("-",1,1);
     Prioridades.InsertarPrio("(",0,5);
     Prioridades.MostrarN();
+    
+    
+    //Prueba
+    int a = Prioridades.BuscarDentro("^");
+    int b = Prioridades.BuscarFuera("^");
+
+    cout << a << endl;
+    cout << b << endl;
+
 
     //lista Pila;
     //lista ExpresionPosfija;
