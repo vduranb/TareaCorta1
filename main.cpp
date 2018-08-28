@@ -7,18 +7,33 @@ using namespace std;
 class nodo{
 private:
     string dato;
+    int dentro;
+    int fuera;
     nodo *siguiente;
 
 public:
-    nodo(string v){
-        dato = v;
+    nodo(string s){  //nodo de strings
+        dato = s;
         siguiente = NULL;
     }
     nodo(string v, nodo *signodo){
         dato = v;
         siguiente =signodo;
     }
+    nodo(string s, int pdp, int pfp){  // nodo de prioridades
+        dato = s;                      // formato (simbolo,PDP,PFP)
+        dentro = pdp;
+        fuera = pfp;
+        siguiente = NULL;
 
+    }
+    nodo(string s, int pdp, int pfp, nodo *signodo){
+        dato = s;
+        dentro = pdp;
+        fuera = pfp;
+        siguiente = signodo;
+
+    }
 friend class lista;
 
 };
@@ -36,12 +51,28 @@ public:
     void Mostrar(int i);
     void lectura(string arch, int i);
     bool ListaVacia() { return primero == NULL; }
+    void InsertarPrio(string v, int pdp, int pfp);
     void cola();
+    void InsertarFinalP(int v, int i);
+    void MostrarN();
 
 };
 
+//void lista::InsertarFinalP(int v, int i)
+//{
+  //  if (ListaVacia())
+    //    primero = new nodo(v);
+   // else{
+     //   pnodo aux = primero;
+       // while ( aux->siguiente != NULL)
+         //   aux= aux->siguiente;
+           // aux->siguiente=new nodo(v);
+     // }
+//}
+
+
 // El i refiere a la posicion de la cola
-void lista::InsertarFinal(string v,int i)   
+void lista::InsertarFinal(string v,int i)
 {
    if (ListaVacia())
      Cola[i] =primero = new nodo(v);     // enlaza el primer nodo que se crea en el puntero de la cola
@@ -53,11 +84,23 @@ void lista::InsertarFinal(string v,int i)
       }
 }
 
+void lista::InsertarPrio(string v, int pdp, int pfp)
+{
+    if (ListaVacia())
+        primero = new nodo(v,pdp,pfp);
+    else
+    { pnodo aux = primero;
+        while ( aux->siguiente != NULL)
+            aux= aux->siguiente;
+        aux->siguiente=new nodo(v,pdp,pfp);
+    }
+}
+
 void lista::Mostrar(int i)
 {
    nodo *aux;
 
-   aux = Cola[i];   
+   aux = Cola[i];
    while(aux) {
       cout << aux->dato << "-> ";
       aux = aux->siguiente;
@@ -82,11 +125,23 @@ void lista::lectura(string arch, int i){
     archivo.close();
 }
 
+void lista::MostrarN()
+{
+   nodo *aux;
+
+   aux = primero;
+   while(aux) {
+      cout << aux->dato << "-> ";
+      aux = aux->siguiente;
+   }
+   cout << endl;
+}
+
 
 
 int main()
 {   lista lista0, lista1, lista2, lista3, lista4;
-    string file0 = "operaciones.txt";  //nombre del archivo
+    string file0 = "operaciones.txt";
     string file1 = "operaciones1.txt";
     string file2 = "operaciones2.txt";
     string file3 = "operaciones3.txt";
@@ -97,6 +152,22 @@ int main()
     lista2.lectura(file2,2);
     lista3.lectura(file3,3);
     lista4.lectura(file4,4);
+    
+
+    lista Prioridades;
+    Prioridades.InsertarPrio("^",3,4);
+    Prioridades.InsertarPrio("*",2,2);
+    Prioridades.InsertarPrio("/",2,2);
+    Prioridades.InsertarPrio("+",1,1);
+    Prioridades.InsertarPrio("-",1,1);
+    Prioridades.InsertarPrio("(",0,5);
+    Prioridades.MostrarN();
+
+    //lista Pila;
+    //lista ExpresionPosfija;
+
+
+
 
 
 }
