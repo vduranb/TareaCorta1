@@ -139,7 +139,7 @@ void lista::MostrarN()
    cout << endl;
 }
 
-int lista::BuscarDentro(string operandor){   //Retorna la prioridad del operador dentro de la pila
+int lista::BuscarDentro(string operandor){
     pnodo aux = primero;
     while(aux!=NULL){
         if (operandor==aux->dato) {
@@ -149,7 +149,7 @@ int lista::BuscarDentro(string operandor){   //Retorna la prioridad del operador
     }
 }
 
-int lista::BuscarFuera(string operandor){   //Retorna la prioridad del operador fuera de la pila  
+int lista::BuscarFuera(string operandor){
     pnodo aux = primero;
     while(aux!=NULL){
         if (operandor==aux->dato) {
