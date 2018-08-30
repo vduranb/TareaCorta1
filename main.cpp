@@ -279,12 +279,12 @@ lista lista::crearExpPostFijo() {
      * en la pila, pero el while saca todo hasta que la pila este vacia
      * y lo va metiendo a la expresion postfijo
      */
-    
+
     while (!pila.ListaVacia()){
         string q = pila.verTopePila();
         pila.pop();
         expPostFijo.push(q);
-        
+
     }
     expPostFijo.MostrarN();
     return expPostFijo;
@@ -356,25 +356,35 @@ string lista::calculadora(string operando, string dato1, string dato2) {
 }
 
 int main() {
-    lista lista0, lista1, lista2, lista3, lista4, lista5, lista6, lista7, lista8;
+    lista lista0, lista1, lista2, lista3, lista4, lista5, lista6, lista7, lista8, lista9;
     string file0 = "operaciones.txt";
     string file1 = "operaciones1.txt";
     string file2 = "operaciones2.txt";
     string file3 = "operaciones3.txt";
     string file4 = "operaciones4.txt";
 
-    lista0.lectura(file0, 0);
-    lista1.lectura(file1, 1);
-    lista2.lectura(file2, 2);
-    lista3.lectura(file3, 3);
-    lista4.lectura(file4, 4);
-
-
-
-
     cout << "=============================" << endl;
-    lista7 = lista4.crearExpPostFijo();
+    cout << "Lista 0: ";
+    lista0.lectura(file0, 0); cout << endl;
+    lista5 = lista0.crearExpPostFijo();
+    lista5.evaluarPostFijo(lista5);
+    cout << "=============================" << endl;
+    cout << "Lista 1: ";
+    lista1.lectura(file1, 1); cout << endl;
+    lista6 = lista1.crearExpPostFijo();
+    lista6.evaluarPostFijo(lista6);
+    cout << "=============================" << endl;
+    cout << "Lista 2: ";
+    lista2.lectura(file2, 2); cout << endl;
+    lista7 = lista2.crearExpPostFijo();
     lista7.evaluarPostFijo(lista7);
-
-
-}
+    cout << "=============================" << endl;
+    cout << "Lista 3: ";
+    lista3.lectura(file3, 3); cout << endl;
+    lista8 = lista2.crearExpPostFijo();
+    lista8.evaluarPostFijo(lista8);
+    cout << "=============================" << endl;
+    cout << "Lista 4: ";
+    lista4.lectura(file4, 4); cout << endl;
+    lista9 = lista4.crearExpPostFijo();
+    lista9.evaluarPostFijo(lista9);
